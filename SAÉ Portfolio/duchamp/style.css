@@ -1,0 +1,27 @@
+/* CSS issu des tutoriels css.alsacreations.com */
+body {
+background: gray;
+color:black;
+font-size:1em;
+font-family:arial;
+}
+table {width:100%;font-size:1.5em; margin-top:0em; color:#e5e7da;  }
+p {text-align:center;}
+
+
+h1 {
+font-size:2.5em; margin-top:0em; color:#e5e7da; font-variant:small-caps; text-align:center;
+}
+h2 {
+font-size:1.5em; margin-top:0em; color:#e5e7da; font-variant:small-caps; text-align:center;
+}
+h3{
+font-size:0.5em; margin-top:0em; color:#e5e7da;  text-align:center;
+}
+a{
+color: white;
+font-size: 1em;
+font-weight: bold;
+font-family: arial, serif;
+font-variant:small-caps;
+}
