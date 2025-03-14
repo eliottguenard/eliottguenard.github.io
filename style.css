@@ -1,0 +1,39 @@
+/* Styles pour l'en-tête à insérer */
+header {
+    background: lightgray
+    }
+    /* Styles pour les liens de la zone de navigation */
+    nav a {
+    text-decoration: none;
+    color: black
+    }
+    nav a:hover {
+    color: rgb(98, 0, 255)
+    }
+    /* Styles pour les liens du pied de page */
+    footer a {
+    text-decoration: none;
+    color: gainsboro
+    }
+    footer a:hover {
+    color: white
+    }
+
+nav {
+    background: whitesmoke; float: left
+    }
+ul {
+    style: none; padding: 30px
+}
+aside {
+    float : right; color: rgb(98, 0, 255); font-size: 1.2em; width: 150px; border: solid
+}
+footer {
+    clear: both; padding-top: 2em; background: dimgray; color: white
+}
+body div {
+    float: left; font-size : 5em
+}
+footer div {
+    float : right; font-size : 1em
+}
