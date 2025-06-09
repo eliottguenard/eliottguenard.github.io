@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Animation pour la section d'accueil */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        /* Style personnalisé pour les cartes de projets */
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);            /* quand je hover, le projet se lève un peu*/
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+       .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 99;
+            background-color: #000000; /* Noir par défaut */
+            color: white; /* Couleur de la flèche */
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #back-to-top i {
+            color: white; /* S'assure que la flèche est blanche */
+            transition: color 0.3s ease;
+        }
+
+        #back-to-top:hover {
+            background-image: linear-gradient(to top, #3B82F6 0%, #34D399 50%);
+            background-color: transparent; /* évite de bloquer le gradient */
+        }
+
+
+
+        .white-bullet-gradient-text {
+            list-style: none; /* cache la puce par défaut */
+            position: relative;
+            padding-left: 1.5em; /* espace pour la puce personnalisée */
+        }
+
+        .white-bullet-gradient-text::before {
+            content: '•'; /* puce */
+            color: white;  /* couleur blanche */
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .btn-gradient {
+            background-color: transparent;
+            color: white;
+            /* Pas de background-image par défaut */
+        }
+
+        .btn-gradient:hover {
+            color: white; /* tu peux adapter la couleur du texte */
+            background-image: linear-gradient(to right, #3B82F6 0%, #34D399 50%);
+        }
+
+        .gradientmenus {
+            background-image: linear-gradient(to right, #34D399, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #34D399, #3B82F6); /* Vert à bleu */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gradient-text-inverted {
+            background: linear-gradient(to right, #3B82F6, #34D399); /* Bleu à vert */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gradient-hover {
+            color: #9CA3AF; /* équivalent Tailwind: text-gray-400 */
+            transition: all 0.3s ease;
+        }
+
+        .gradient-hover:hover {
+            background-image: linear-gradient(to right, #34D399 0%, #3B82F6 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+
+    </style>
+</head>
+<body id="top" class="bg-gray-50 font-sans">
+    <!-- Barre de navigation sticky -->
+    <header class="sticky top-0 z-50 shadow-md" style="background-color: #000000;">
+
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="bg-clip-text text-transparent text-2xl font-bold" style="background-image: linear-gradient(to right, #34D399 0%, #3B82F6 70%);">Eliott Guénard</a>
+            
+            <!-- Menu desktop -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-400 transition duration-300 flex items-center gradient-hover">
+                    <i class="fas fa-home mr-2"></i> Accueil
+                </a>
+                <a href="#about" class="text-gray-400 transition duration-300 flex items-center gradient-hover">
+                    <i class="fas fa-user mr-2"></i> À propos
+                </a>
+                <a href="#projects" class="text-gray-400 transition duration-300 flex items-center gradient-hover">
+                    <i class="fas fa-project-diagram mr-2"></i> Mes projets
+                </a>
+                <a href="#bilan" class="text-gray-400 transition duration-300 flex items-center gradient-hover">
+                    <i class="fas fa-comment-dots mr-2"></i> Bilan Personnel
+                </a>
+                <a href="#contact" class="text-gray-400 transition duration-300 flex items-center gradient-hover">
+                    <i class="fas fa-envelope mr-2"></i> Contact
+                </a>
+            </nav>
+            
+            <!-- Bouton menu mobile -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>                    <!--  Modifier le menu mobile pour que les couleurs soient les mêmes que dans le desktop-->
+        </div>
+        
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#home" class="text-gray-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-gray-100 flex items-center">
+                    <i class="fas fa-home mr-2"></i> Accueil
+                </a>
+                <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-gray-100 flex items-center">
+                    <i class="fas fa-project-diagram mr-2"></i> Mes Projets
+                </a>
+                <a href="#about" class="text-gray-700 hover:text-indigo-600 transition duration-300 py-2 border-b border-gray-100 flex items-center">
+                    <i class="fas fa-user mr-2"></i> À propos
+                </a>
+                <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition duration-300 py-2 flex items-center">
+                    <i class="fas fa-envelope mr-2"></i> Contact
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!--Partie Accueil-->
+    <section id="home" 
+        class="min-h-screen flex items-center justify-center text-white"
+        style="background-image: url('fond.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">>
+    <div class="container mx-auto px-4 animate-fade-in flex justify-center items-center gap-20">
+        
+        <!-- Partie texte à gauche -->
+        <div class="max-w-2xl text-left">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+            <span style="color: #ffffff;">Bonjour, je m'appelle Eliott Guénard </span>
+            
+        </h1>
+        <p class="text-xl md:text-2xl mb-8">Étudiant en 1ère année de BUT SD.</p>
+        <div class="flex flex-wrap gap-4">
+            <a href="#projects" 
+            class="btn-gradient px-6 py-3 border-2 border-white rounded-full font-semibold transition duration-300">
+            Voir mes projets <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+            <a href="#contact" 
+                class="btn-gradient px-6 py-3 border-2 border-white rounded-full font-semibold transition duration-300">
+                Contactez-moi <i class="fas fa-paper-plane ml-2"></i>
+            </a>
+        </div>
+        </div>
+        
+        <!-- Photo à droite -->
+        <div>
+        <img src="moi.jpg" class="h-64 w-64 rounded-full object-cover shadow-lg">
+        </div>
+        
+    </div>
+    </section>
+
+
+    
+
+
+    <!-- A propos -->
+    <section id="about" class="py-20 bg-black">
+  <div class="container mx-auto px-4">
+    <!-- Titre centré -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-white">
+        À propos de <span class="gradient-text">moi</span>
+      </h2>
+    </div>
+
+    <!-- Deux colonnes -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <!-- Colonne gauche : texte -->
+      <div class="text-white text-left space-y-6">
+        <p>
+          Je m'appelle <span class="font-bold gradient-text underline">Eliott Guénard</span>. Dans ce petit texte, vous pourrez en apprendre un peu plus sur moi :
+        </p>
+        <ul class="list-disc list-inside">
+          <li>Date de naissance : 31/05/2003 (22 ans)</li>
+          <li>Étudiant en BUT Science des données depuis Septembre 2024</li>
+          <li>Curieux, motivé et polyvalent</li>
+        </ul>
+        <p class="text-white mb-6">
+            Mes <span class = "font-bold gradient-text">centres d'intérêt</span>:<br>
+            <span class="pl-8 block">J'adore <span class="font-bold gradient-text">lire</span>.</span>
+            J'ai commencé à lire très très jeune, en grande section. Je pense que les livres m'ont toujours passionné, et cette passion s'est réellement développée durant mes années collège,
+            où j'ai commencé à dévaliser les rayons de la médiathèque de Tonnay-Charente.
+            Romans, BDs ou mangas, je pouvais passer des heures à lire sans m'arrêter, à tel point que j'en devenais incapable de voir passer les heures.
+
+            <span class="pl-8 block mt-4">La <span class="font-bold gradient-text">musique</span>. Ahhhh la musique.</span>
+            Je pense que mon amour pour la musique me vient de mes parents. Ils écoutent tous les deux des genres musicaux et des artistes très différents,
+            et je pense que le mix de ces goûts musicaux est ce qui fait que j'aime autant la musique, et surtout autant de genres différents.
+            A l'écriture de ce texte, j'ai très exactement <span class = "font-bold gradient-text">8351</span> chansons dans mes titres likés sur Spotify, et je compte bien agrandir ce nombre en 
+            écoutant de nouveaux albums cette semaine ! 
+            <span class="block">En parlant d'albums, laissez moi vous donner quelques recommendations :</span>
+        </p>
+        <ul class="text-white list-disc list-inside mb-6">
+            <li class="bg-clip-text text-transparent white-bullet-gradient-text" style="background-image: linear-gradient(to right, #c1ba78 0%, #3ec8f2 40%);">
+                Lahai by Sampha</li>
+            <li class="bg-clip-text text-transparent white-bullet-gradient-text" style="background-image: linear-gradient(to right, #0e562d 0%, #e53c12 40%);">
+                Koi No Yokan by Deftones</li>
+            <li class="bg-clip-text text-transparent white-bullet-gradient-text" style="background-image: linear-gradient(to right, #1326a3 0%, #efeb79 40%);">
+                Twenty Twenty by Djo</li>
+            <li class="bg-clip-text text-transparent white-bullet-gradient-text" style="background-image: linear-gradient(to right, #34D399 0%, #3B82F6 40%);">
+                Melt My Eyez See Your Future by Denzel Curry</li>
+            <li class="bg-clip-text text-transparent white-bullet-gradient-text" style="background-image: linear-gradient(to right, #29b0f3 0%, #ffffff 40%);">
+                Imaginal Disk by Magdanlena Bay</li>
+        </ul>
+        <p class="text-white mb-6">
+            Ps: cliquez sur les images!
+        </p>
+        <p class="text-white mb-6">
+            <span class="pl-8 block">Le <span class="font-bold gradient-text">sport</span>.</span>
+            Je fais du sport tous les ans depuis mes 10 ans. J'ai fait du football pendant 2 ans, du karaté pendant 1 an, de l'athlétisme pendant 7 ans, et  
+            depuis le début de cette année scolaire, je fais aussi de la musculation en plus de l'escalade. Je trouve que les deux activités se complimentent très bien,
+            et cela me permet de voir mes progrès en force de manière très efficace et litérale, en grimpant des voies de plus en plus dures.
+        </p>
+      </div>
+
+        <!-- Colonne droite : images en quadrillage avec liens -->
+        <div class="grid grid-cols-2 gap-4">
+        <a href="https://www.albumoftheyear.org/album/732985-sampha-lahai.php" target="_blank">
+            <img src="732985-lahai_1210.jpg" alt="Lahai by Sampha" class="w-full h-60 object-cover rounded-lg hover:opacity-80 transition">
+        </a>
+        <a href="https://www.albumoftheyear.org/album/4484-deftones-koi-no-yokan.php" target="_blank">
+            <img src="koi-no-yokan.jpg" alt="Koi No Yokan by Deftones" class="w-full h-60 object-cover rounded-lg hover:opacity-80 transition">
+        </a>
+        <a href="https://www.albumoftheyear.org/album/173918-djo-twenty-twenty.php" target="_blank">
+            <img src="173918-twenty-twenty.jpg" alt="Twenty Twenty by Djo" class="w-full h-60 object-cover rounded-lg hover:opacity-80 transition">
+        </a>
+        <a href="https://www.albumoftheyear.org/album/268169-denzel-curry-melt-my-eyes-see-your-future.php" target="_blank">
+            <img src="268169-melt-my-eyes-see-your-future-1.jpg" alt="Melt My Eyez by Denzel Curry" class="w-full h-60 object-cover rounded-lg hover:opacity-80 transition">
+        </a>
+        <a href="https://www.albumoftheyear.org/album/1012480-magdalena-bay-imaginal-disk.php" target="_blank">
+            <img src="1012480-imaginal-disk_115432.webp" alt="Imaginal Disk by Magdalena Bay" class="w-full h-60 object-cover rounded-lg hover:opacity-80 transition">
+        </a>
+        <a href="https://www.albumoftheyear.org/album/447117-bad-omens-the-death-of-peace-of-mind.php" target="_blank">
+            <img src="447117-the-death-of-peace-of-mind.jpg" alt="Cognacs & Cigarettes" class="w-full h-60 object-cover rounded-lg hover:opacity-80 transition">
+        </a>
+        <a href="https://www.albumoftheyear.org/album/203601-the-strokes-the-new-abnormal.php" target="_blank">
+            <img src="203601-the-new-abnormal-1.jpg" alt="The New Abnormal by The Strokes" class="w-full h-60 object-cover rounded-lg hover:opacity-80 transition">
+        </a>
+        <a href="https://www.albumoftheyear.org/album/380825-foxes-ultramarine.php" target="_blank">
+            <img src="380825-ultramarine.jpg" alt="Ultramarine by Foxes" class="w-full h-60 object-cover rounded-lg hover:opacity-80 transition">
+        </a>
+        </div>
+    </div>
+  </div>
+</section>
+    <!--Section Projets-->
+    <section id="projects" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            <span class="text-black">Mes </span>
+            <span class="gradient-text">Projets</span>
+        </h2>
+        <p class="max-w-2xl mx-auto text-black">Découvrez mes projets universitaires de première année.</p>
+        </div>
+
+        <!-- Slider wrapper -->
+        <div class="relative">
+        <!-- Flèche gauche -->
+        <button id="prevBtn" class="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white shadow-md p-2 rounded-full z-10">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- Conteneur scrollable -->
+        <div id="carousel" class="flex overflow-x-auto scroll-smooth space-x-6 px-10">
+            <!-- Projet 1 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet_final.png" alt="Projet Power BI" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/cestledossierfinaldelaSAE.pbix" target="_blank" rel="noopener noreferrer">
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Analyse, Reporting et Datavisualisation
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Analyse de données sur les accidents de la vie courante et production d'une infographie.
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 2 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projetVBA.png" alt="Projet 1" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/SAE_VBA_finalisée.xlsm" target="_blank" rel="noopener noreferrer">
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Création d'un reporting
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Création d'un outil de gestion des notes grâce à Excel VBA.
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 3 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet_indicateurs.png" alt="Projet 1" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/rapport_final.pdf" target="_blank" rel="noopener noreferrer">
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Construction et présentation d'indicateurs de performance
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Etude de la situation comptable de Fleury-Michon.
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 4 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet_conceptionbdr.png" alt="Projet Python" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/selmarin.py" download>
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Conception d'une base de données
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Création et utilisation d'une base de données grâce à Python et MySQL. 
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 5 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet1.png" alt="Projet 1" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/SAE_Economie_S1_Guénard_Eliott.pdf" target="_blank" rel="noopener noreferrer">
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Apprendre en situation la production de données en entreprise
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Dressement du portrait des votants NFP dans les Hautes-Pyrénées (65).
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 6 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/proje_echantillonnage.png" alt="Projet 1" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/rapport_SAÉ_Echantillonnage_et_estimation.pdf" target="_blank" rel="noopener noreferrer">
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Echantillonnage et estimation d'une population
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Estimation de la population de la région PACA et traitement de données d'enquête.
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 7 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet_gestionfichiers.png" alt="Projet Python" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/transformer_JsonToCsv_Loris_Eliott.py" download>
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Gestion de fichiers
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Transformation et nettoyage automatique d'un fichier csv en un fichier excel utilisable. 
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 8 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet_regression.png" alt="Projet dossier compressé" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/regression.zip" download>
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Régression sur des données réelles
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Régression linéaire afin de prédire la valeur de biens immobiliers.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Projet 9 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet_enquete.png" alt="Projet dossier compressé" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/enquete.zip" download>
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Enquête Sport Etudiant
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Enquête sur les habitudes sportives des étudiants de l'université de Poitiers site de Niort.
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 10 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet_rrrr.png" alt="Projet dossier compressé" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/rrrrrr.zip" download>
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Etude d'une formation et de sa population
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Etude de la formation LEA en France en 2023 et 2024.
+                    </p>
+                </div>
+            </div>
+            <!-- Projet 11 -->
+            <div class="min-w-[300px] max-w-sm bg-white rounded-xl shadow-lg">
+                <div class="h-48 flex items-center justify-center">
+                    <img src="./images_projets/projet_barcelone.png" alt="Projet PowerPoint" class="h-full w-full object-contain">
+                </div>
+                <div class="p-6">
+                    <a href="./projets/PP_SAE_Barcelone.pptx" target="_blank" rel="noopener noreferrer">
+                        <h3 class="text-xl font-bold gradient-text-inverted mb-2 hover:underline cursor-pointer">
+                            Présentation d'un territoire
+                        </h3>
+                    </a>
+                    <p class="text-black mb-4">
+                        Présentation de la ville de Barcelone et de son évolution pour les JO de 1992.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flèche droite -->
+        <button id="nextBtn" class="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white shadow-md p-2 rounded-full z-10">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        </div>
+    </div>
+    </section>
+
+    <!--Section Bilan Personnel-->
+    <section id="bilan" class="py-20 bg-black text-white">
+    <div class="container mx-auto px-4">
+        <div class="md:flex md:space-x-16">
+        
+        <!-- Texte à gauche -->
+        <div class="md:w-1/2 mb-12 md:mb-0">
+            <h2 class="text-4xl font-bold mb-6 gradient-text" style="background: linear-gradient(to right, #34D399, #3B82F6); -webkit-background-clip: text; color: transparent;">
+            Mon Bilan Personnel
+            </h2>
+            <p class="text-white leading-relaxed indent-8">
+            Cette année était un nouveau départ pour moi, une reprise d'études dans un milieu avec lequel je n'était que très peu familier.
+            Après mon Bac Scientifique, j'avais pris la décision de me séparer des sciences pour partir en licence LEA (Langues Etrangères Appliquées). 
+            Malheureusement, à la fin de ma licence, les masters que j'avais en vue au début ne m'intéressaient plus et j'ai donc pris une année sabbatique,
+            aussi bien pour trouver un nouveau projet professionnel que pour prendre une pause dans mes études après une licence marquée par la crise du Covid-19.
+            C'est durant cette année de recherche que j'ai trouvé le BUT SD (Science des données). J'avais toujours aimé travailler avec les chiffres malgré mon départ en 
+            fac de langues, et la perspective de travailler en science des données me semblait très intéressante malgré mon manque de connaissances en informatique.
+            </p> <br>
+            <p class="text-white leading-relaxed indent-8">
+                Cette première année était donc un nouveau départ et un test. Et je pense pouvoir me donner une plutôt bonne note!
+                J'avais un léger retard en programmation par rapport à un bon nombre de mes camarades, mais au fil de l'année, 
+                j'ai réussi à obtenir des notes presque constamment au-dessus de la moyenne de classe, et les difficultés que j'ai pu avoir
+                en algèbre ont aussi été éliminées. 
+            </p> <br>
+            <p class="text-white leading-relaxed indent-8">
+                Je pense pouvoir dire que pour moi, cette année scolaire a été un succès, aussi bien sur le plan purement universitaire que sur le plan social.
+                Je m'entends très bien avec mes camarades, et j'ai hâte de continuer à travailler avec eux l'année prochaine.
+            </p>
+        </div>
+
+            <!-- Partie droite -->
+        <div class="md:w-1/2 flex">
+        <!-- Ligne verticale -->
+        <div 
+            class="w-1 bg-gradient-to-b from-green-400 to-blue-500"
+        ></div>
+
+        <!-- Liste des étapes -->
+        <ul class="pl-6 space-y-20">
+            <li class="relative mt-20">
+            <div class="w-5 h-5 bg-green-500 rounded-full absolute -left-9 top-1"
+                style="background: linear-gradient(to top, #34D399, #3B82F6);"></div>
+            <h3 class="text-xl font-semibold text-white">2017 - 2020</h3>
+            <p class="text-gray-400">Lycée Polyvalent Marcel Dassault (Rochefort) - Bac Scientifique (SSVT)</p>
+            </li>
+            <li class="relative">
+            <div class="w-5 h-5 bg-green-500 rounded-full absolute -left-9 top-1"
+                style="background: linear-gradient(to top, #34D399, #3B82F6);"></div>
+            <h3 class="text-xl font-semibold text-white">2020 - 2023</h3>
+            <p class="text-gray-400">Licence LEA parcours Affaires & Commerce - Université de Poitiers</p>
+            </li>
+            <li class="relative">
+            <div class="w-5 h-5 bg-green-500 rounded-full absolute -left-9 top-1"
+                style="background: linear-gradient(to top, #34D399, #3B82F6);"></div>
+            <h3 class="text-xl font-semibold text-white">2024 - Présent</h3>
+            <p class="text-gray-400">BUT Science des Données - IUT de Niort</p>
+            </li>
+        </ul>
+        </div>
+
+
+
+        </div>
+    </div>
+    </section>
+
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Contactez-moi</h2>
+                <a href="CV_Eliott_Guénard.pdf" download
+                    class="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition duration-300">
+                    Téléchargez mon CV !
+                </a>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-black rounded-xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-full bg-black p-8 md:p-12">
+                        <h3 class="text-2xl gradient-text font-bold mb-6">Informations de contact</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope gradient-text text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-medium gradient-text mb-1">Email</h4>
+                                    <p class="text-white">eliott.guenard@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt gradient-text text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-medium gradient-text mb-1">Téléphone</h4>
+                                    <p class="text-white">+33 6 11 92 04 00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt gradient-text text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-medium gradient-text mb-1">Adresse</h4>
+                                    <p class="text-white">8 rue Archimède, 79000 Niort</p>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer class="bg-black text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-center">
+        <div class="flex flex-wrap justify-center gap-x-20 gap-y-4 text-lg">
+            <a href="#home" class="gradient-text hover:gradient-text transition duration-300">Accueil</a>
+            <a href="#about" class="gradient-text hover:gradient-text transition duration-300">À propos</a>
+            <a href="#projects" class="gradient-text hover:gradient-text transition duration-300">Mes projets</a>
+            <a href="#bilan" class="gradient-text hover:gradient-text transition duration-300">Bilan Personnel</a>
+            <a href="#contact" class="gradient-text hover:gradient-text transition duration-300">Contact</a>
+        </div>
+        </div>
+    </div>
+    </footer>
+
+    <!-- Bouton de retour en haut -->
+    <a href="#top" id="back-to-top" class="back-to-top bg-black text-black w-12 h-12 rounded-full flex items-center justify-center transition duration-300 shadow-lg">
+        <i class="fas fa-chevron-up text-white"></i>
+    </a>
+
+
+    <script>
+        // Menu mobile toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Fermer le menu mobile quand on clique sur un lien
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling pour les liens de navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Bouton de retour en haut
+        window.addEventListener('scroll', function () {
+            const backToTopButton = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        // Highlight du menu actif au scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('header nav a');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                const isActive = link.getAttribute('href').includes(current);
+
+                if (isActive && !link.classList.contains('gradientmenus')) {
+                    link.classList.remove('text-gray-400');
+                    link.classList.add('gradientmenus');
+                } else if (!isActive && link.classList.contains('gradientmenus')) {
+                    link.classList.remove('gradientmenus');
+                    link.classList.add('text-gray-400');
+                }
+            });
+        });
+        
+        const carousel = document.getElementById('carousel');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
+        nextBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+
+    </script>
+</body>
+</html>
