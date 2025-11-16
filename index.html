@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Eliott Guénard | Science des Données</title>
+    <link rel="stylesheet" href="portfolio-new.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">EG</a>
+                <ul class="nav-menu">
+                    <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+                    <li><a href="#a-propos" class="nav-link">À propos</a></li>
+                    <li><a href="#projets" class="nav-link">Projets</a></li>
+                    <li><a href="#bilan" class="nav-link">Bilan</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Accueil -->
+    <section id="accueil" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Bonjour, je suis<br>
+                        <span class="hero-title">Eliott Guénard</span>
+                    </h1>
+                    <p class="hero-subtitle">Étudiant en 2ème année de BUT Science des Données</p>
+<!--                     <p class="hero-description">
+                        Passionné par l'analyse de données, la datavisualisation et le machine learning. 
+                        Je transforme les données en insights actionnables.
+                    </p> -->
+                    <div class="hero-buttons">
+                        <a href="#projets" class="btn btn-accueil">
+                            <i class="fas fa-folder-open"></i> Voir mes projets
+                        </a>
+                        <a href="#contact" class="btn btn-accueil">
+                            <i class="fas fa-envelope"></i> Me contacter
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <img src="./images_projets/moi2.jpg" alt="Eliott Guénard" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="a-propos" class="about">
+        <div class="container">
+            <h2 class="section-title">À propos de <span class="gradient-text">moi</span></h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lead">
+                        Étudiant en <strong>BUT Science des Données</strong> à l'IUT de Niort, 
+                        je suis passionné par l'exploitation des données pour résoudre des problèmes complexes.
+                    </p>
+                    
+                    <div class="about-details">
+                        <div class="detail-card">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Formation</h3>
+                            <p>BUT Science des Données<br>IUT de Niort</p>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <i class="fas fa-code"></i>
+                            <h3>Compétences</h3>
+                            <p>Python, R, SQL, Power BI<br>Machine Learning, Statistiques</p>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Spécialités</h3>
+                            <p>Analyse de données<br>Datavisualisation, Reporting</p>
+                        </div>
+                    </div>
+                    
+                    <div class="skills">
+                        <h3>Technologies utilisées</h3>
+                        <div class="skills-grid">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">R</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">Excel VBA</span>
+                            <span class="skill-tag">Statistiques</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Talend</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projets" class="projects">
+        <div class="container">
+            <h2 class="section-title">Mes <span class="gradient-text">Projets</span></h2>
+            <p class="section-subtitle">Découvrez mes réalisations universitaires organisées par année d'étude</p>
+            
+            <!-- Filtres par année -->
+            <div class="project-filters">
+                <button class="filter-btn" data-year="all">Tous les projets</button>
+                <button class="filter-btn active" data-year="1">1ère année</button>
+                <button class="filter-btn" data-year="2">2ème année</button>
+                <button class="filter-btn" data-year="3">3ème année</button>
+            </div>
+            
+            <!-- Projets 1ère année -->
+            <div class="projects-grid" data-year="1">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet_final.png" alt="Projet Power BI">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Analyse, Reporting et Datavisualisation</h3>
+                        <p>Analyse approfondie des données sur les accidents de la vie courante avec production d'une infographie interactive sous Power BI.</p>
+                        <div class="project-tags">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Datavisualisation</span>
+                            <span class="tag">Reporting</span>
+                        </div>
+                        <a href="./projets/1/cestledossierfinaldelaSAE.pbix" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Voir le projet
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projetVBA.png" alt="Projet VBA">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Création d'un reporting automatisé</h3>
+                        <p>Développement d'un outil de gestion des notes avec Excel VBA permettant l'automatisation des calculs et la génération de rapports.</p>
+                        <div class="project-tags">
+                            <span class="tag">Excel VBA</span>
+                            <span class="tag">Automatisation</span>
+                        </div>
+                        <a href="./projets/1/SAE_VBA_finalisée.xlsm" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Voir le projet
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet_indicateurs.png" alt="Projet Indicateurs">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Indicateurs de performance</h3>
+                        <p>Construction et présentation d'indicateurs de performance financière pour l'étude de la situation comptable de Fleury-Michon.</p>
+                        <div class="project-tags">
+                            <span class="tag">Finance</span>
+                            <span class="tag">KPI</span>
+                        </div>
+                        <a href="./projets/1/rapport_final.pdf" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Voir le projet
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet_conceptionbdr.png" alt="Base de données">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Conception d'une base de données</h3>
+                        <p>Création et utilisation d'une base de données relationnelle avec Python et MySQL pour la gestion de données complexes.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">SQL</span>
+                        </div>
+                        <a href="./projets/1/selmarin.py" class="project-link" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet1.png" alt="Projet Économie">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Production de données en entreprise</h3>
+                        <p>Analyse approfondie et dressement du portrait des votants NFP dans les Hautes-Pyrénées (65) avec méthodologie de terrain.</p>
+                        <div class="project-tags">
+                            <span class="tag">Analyse</span>
+                            <span class="tag">Économie</span>
+                        </div>
+                        <a href="./projets/1/SAE_Economie_S1_Guénard_Eliott.pdf" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Voir le projet
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/proje_echantillonnage.png" alt="Échantillonnage">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Échantillonnage et estimation</h3>
+                        <p>Estimation statistique de la population de la région PACA et traitement rigoureux de données d'enquête avec intervalles de confiance.</p>
+                        <div class="project-tags">
+                            <span class="tag">Statistiques</span>
+                            <span class="tag">R</span>
+                        </div>
+                        <a href="./projets/1/rapport_SAÉ_Echantillonnage_et_estimation.pdf" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Voir le projet
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet_gestionfichiers.png" alt="Gestion fichiers">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Gestion de fichiers et transformation</h3>
+                        <p>Transformation et nettoyage automatique de fichiers CSV en fichiers Excel utilisables avec scripts Python.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Data Cleaning</span>
+                        </div>
+                        <a href="./projets/1/transformer_JsonToCsv.py" class="project-link" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet_regression.png" alt="Régression">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Régression sur données réelles</h3>
+                        <p>Modèle de régression linéaire pour prédire la valeur de biens immobiliers avec analyse des résidus et validation.</p>
+                        <div class="project-tags">
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <a href="./projets/1/regression.zip" class="project-link" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet_enquete.png" alt="Enquête Sport">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Enquête Sport Étudiant</h3>
+                        <p>Enquête complète sur les habitudes sportives des étudiants de l'université de Poitiers site de Niort avec analyse statistique.</p>
+                        <div class="project-tags">
+                            <span class="tag">Enquête</span>
+                            <span class="tag">Statistiques</span>
+                        </div>
+                        <a href="./projets/1/enquete.zip" class="project-link" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet_rrrr.png" alt="Étude formation">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Étude d'une formation</h3>
+                        <p>Analyse approfondie de la formation LEA en France en 2023 et 2024 avec données démographiques et trajectoires professionnelles.</p>
+                        <div class="project-tags">
+                            <span class="tag">Analyse</span>
+                            <span class="tag">Éducation</span>
+                        </div>
+                        <a href="./projets/1/rrrrrr.zip" class="project-link" download>
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images_projets/1/projet_barcelone.png" alt="Barcelone">
+                        <span class="year-badge">Année 1</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Présentation d'un territoire</h3>
+                        <p>Présentation détaillée de la ville de Barcelone et analyse de son évolution urbaine pour les JO de 1992.</p>
+                        <div class="project-tags">
+                            <span class="tag">Géographie</span>
+                            <span class="tag">Présentation</span>
+                        </div>
+                        <a href="./projets/1/PP_SAE_Barcelone.pptx" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Voir le projet
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projets 2ème année (placeholder) -->
+            <div class="projects-grid" data-year="2" style="display: none;">
+                <div class="project-card placeholder">
+                    <div class="project-content">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Projets à venir</h3>
+                        <p>Les projets de 2ème année seront ajoutés prochainement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projets 3ème année (placeholder) -->
+            <div class="projects-grid" data-year="3" style="display: none;">
+                <div class="project-card placeholder">
+                    <div class="project-content">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Projets à venir</h3>
+                        <p>Les projets de 3ème année seront ajoutés prochainement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Bilan Personnel -->
+    <section id="bilan" class="bilan">
+        <div class="container">
+            <h2 class="section-title"><span class="gradient-text">Mon Bilan Personnel</span></h2>
+            
+            <div class="bilan-content">
+                <div class="bilan-text">
+                    <div class="bilan-intro">
+                        <p class="lead">
+                            Cette première année en BUT Science des Données représente un nouveau départ passionnant 
+                            dans mon parcours académique et professionnel.
+                        </p>
+                    </div>
+
+                    <div class="bilan-section">
+                        <h3><i class="fas fa-route"></i> Mon parcours</h3>
+                        <p>
+                            Après mon Bac Scientifique, j'avais pris la décision de me séparer des sciences pour partir 
+                            en licence LEA (Langues Étrangères Appliquées). Malheureusement, à la fin de ma licence, 
+                            les masters que j'avais en vue au début ne m'intéressaient plus. J'ai donc pris une année sabbatique, 
+                            aussi bien pour trouver un nouveau projet professionnel que pour prendre une pause dans mes études 
+                            après une licence marquée par la crise du Covid-19.
+                        </p>
+                        <p>
+                            C'est durant cette année de recherche que j'ai découvert le BUT Science des Données. 
+                            J'avais toujours aimé travailler avec les chiffres malgré mon départ en fac de langues, 
+                            et la perspective de travailler en science des données me semblait très intéressante malgré 
+                            mon manque de connaissances en informatique.
+                        </p>
+                    </div>
+
+                    <div class="bilan-section">
+                        <h3><i class="fas fa-chart-line"></i> Mes réussites</h3>
+                        <p>
+                            Cette première année était donc un nouveau départ et un test. Et je pense pouvoir me donner 
+                            une plutôt bonne note ! J'avais un léger retard en programmation par rapport à un bon nombre 
+                            de mes camarades, mais au fil de l'année, j'ai réussi à obtenir des notes presque constamment 
+                            au-dessus de la moyenne de classe, et les difficultés que j'ai pu avoir en algèbre ont aussi 
+                            été éliminées.
+                        </p>
+                    </div>
+
+                    <div class="bilan-section">
+                        <h3><i class="fas fa-lightbulb"></i> Projets futurs</h3>
+                        <p>
+                            Pour les années à venir, je souhaite me spécialiser dans l'analyse prédictive et le machine learning. 
+                            Mon objectif est d'approfondir mes compétences en intelligence artificielle et de participer à des 
+                            projets innovants dans le domaine de la data science.
+                        </p>
+                        <p>
+                            Je suis également intéressé par les opportunités de stage et d'alternance qui me permettront 
+                            d'appliquer mes connaissances en situation professionnelle réelle et de développer mon réseau 
+                            dans le secteur.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>2017 - 2020</h4>
+                            <p>Bac Scientifique (SSVT)</p>
+                            <span class="timeline-location">Lycée Marcel Dassault, Rochefort</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>2020 - 2023</h4>
+                            <p>Licence LEA Affaires & Commerce</p>
+                            <span class="timeline-location">Université de Poitiers</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>2023 - 2024</h4>
+                            <p>Année sabbatique</p>
+                            <span class="timeline-location">Réflexion & réorientation</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item active">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>2024 - Présent</h4>
+                            <p>BUT Science des Données</p>
+                            <span class="timeline-location">IUT de Niort</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item future">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>2026+</h4>
+                            <p>Carrière en Data Science</p>
+                            <span class="timeline-location">À définir</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Me <span class="gradient-text">Contacter</span></h2>
+            <p class="section-subtitle">N'hésitez pas à me contacter pour toute opportunité ou question !</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <a href="mailto:eliott.guenard@gmail.com">eliott.guenard@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Téléphone</h3>
+                            <a href="tel:+33611920400">+33 6 11 92 04 00</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/eliott-guenard" target="_blank" rel="noopener">linkedin.com/in/eliott-guenard</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Adresse</h3>
+                            <p>8 rue Archimède<br>79000 Niort, France</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    <div class="cta-box">
+                        <i class="fas fa-file-download"></i>
+                        <h3>Télécharger mon CV</h3>
+                        <p>Retrouvez l'ensemble de mon parcours et de mes compétences</p>
+                        <a href="CV_Eliott_Guénard.pdf" download class="btn btn-primary">
+                            <i class="fas fa-download"></i> Télécharger le CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Eliott Guénard - Tous droits réservés</p>
+                <div class="footer-links">
+                    <a href="#accueil">Accueil</a>
+                    <a href="#a-propos">À propos</a>
+                    <a href="#projets">Projets</a>
+                    <a href="#bilan">Bilan</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <button id="scrollTop" class="scroll-top" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
